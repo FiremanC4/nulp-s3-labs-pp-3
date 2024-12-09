@@ -6,7 +6,7 @@ public class Medic extends Droid {
     private int healsLeft;
     private final int healScore;
     public Medic(String name) {
-        super(name, 40, 5); // Середнє здоров'я, низький урон
+        super(name, 40, 5);
         healsLeft = 20;
         healScore = 20;
     }

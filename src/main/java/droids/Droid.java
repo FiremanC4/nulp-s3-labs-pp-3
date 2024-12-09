@@ -1,12 +1,8 @@
 package droids;
 
 import game.BattleLogger;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Droid {
-    private final Logger logger = LogManager.getLogger();
-
     protected String name;
     protected int health;
     protected int damage;

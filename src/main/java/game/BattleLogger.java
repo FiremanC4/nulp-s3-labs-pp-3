@@ -17,7 +17,7 @@ public class BattleLogger {
 
     static {
         try {
-            fileWriter = new PrintWriter(new FileWriter(LOG_FILE, true)); // Append mode
+            fileWriter = new PrintWriter(new FileWriter(LOG_FILE, true));
         } catch (IOException e) {
             throw new RuntimeException("Не вдалося відкрити файл для запису логів: ", e);
         }
@@ -41,17 +41,17 @@ public class BattleLogger {
         else
             logMessage = "";
 
-        // Print to console
+
         System.out.println(logMessage);
 
-        // Write to file
+
         if (fileWriter != null) {
             fileWriter.println(logMessage);
             fileWriter.flush();
         }
     }
 
-    // 1v1 Battle Logs
+
     public static void start1v1(Droid droid1, Droid droid2) {
         round = 1;
         log("Бій розпочинається між " + droid1.getName() + " і " + droid2.getName() + "!");
@@ -74,7 +74,7 @@ public class BattleLogger {
         }
     }
 
-    // Team Battle Logs
+
     public static void startTeamBattle(List<Droid> team1, List<Droid> team2) {
         round = 1;
         log("Бій між командами починається!");

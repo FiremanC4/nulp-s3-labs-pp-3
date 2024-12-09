@@ -7,7 +7,7 @@ public class Tank extends Droid {
         return "Танк";
     }
     public Tank(String name) {
-        super(name, 100, 10); // Високе здоров'я, низький урон
+        super(name, 100, 10);
         maxTookDamage = 7;
     }
 
