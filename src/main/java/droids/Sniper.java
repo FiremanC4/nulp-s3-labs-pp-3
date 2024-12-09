@@ -1,6 +1,8 @@
 package droids;
 
 
+import game.BattleLogger;
+
 public class Sniper extends Droid {
     protected double camouflageLevel;
 
@@ -17,7 +19,7 @@ public class Sniper extends Droid {
     @Override
     public int takeDamage(int damage) {
         if (Math.random() < camouflageLevel) {
-            System.out.printf("%s уникає удару завдяки маскуванню!\n", this);
+            BattleLogger.camouflageAction(this);
             return 0;
         }
         return super.takeDamage(damage);

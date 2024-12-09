@@ -1,5 +1,6 @@
 package droids;
 
+import game.BattleLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,6 +18,7 @@ public class Droid {
     }
 
     public int attack(Droid droidToAttack) {
+        BattleLogger.attackAction(this, droidToAttack);
         return droidToAttack.takeDamage(this.damage);
     }
 
@@ -25,10 +27,10 @@ public class Droid {
         if (health <= 0) {
             int takenDamage = this.health + damage;
             health = 0;
-            logger.info("{} отримав {} шкоди і знищений.", name, takenDamage);
+            BattleLogger.takeDamageAndDieAction(this, takenDamage);
             return takenDamage;
         } else {
-            logger.info("{} отримав {} шкоди, залишилося {} здоров'я.", name, damage, health);
+            BattleLogger.takeDamageAction(this, damage);
             return damage;
         }
     }

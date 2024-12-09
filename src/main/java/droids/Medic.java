@@ -1,10 +1,14 @@
 package droids;
 
+import game.BattleLogger;
+
 public class Medic extends Droid {
     private int healsLeft;
+    private final int healScore;
     public Medic(String name) {
         super(name, 40, 5); // Середнє здоров'я, низький урон
         healsLeft = 20;
+        healScore = 20;
     }
 
     @Override
@@ -13,17 +17,12 @@ public class Medic extends Droid {
     }
 
     public void heal(Droid ally) {
-        if (!isAlive()) {
-            System.out.println(name + " не може лікувати. Він знищений!");
-            return;
-        }
-
         if (healsLeft<=0) {
             throw new IllegalCallerException(name + " can't heal because he left no heals");
         }
 
-        System.out.println(name + " лікує " + ally.getName() + " на 20 одиниць.");
-        ally.health += 20;
+        BattleLogger.healAction(this, ally, healScore);
+        ally.health += healScore;
         healsLeft -= 1;
     }
     public boolean canHeal() {

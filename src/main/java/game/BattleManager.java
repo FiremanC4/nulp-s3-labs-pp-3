@@ -1,3 +1,5 @@
+package game;
+
 import droids.Droid;
 import droids.Medic;
 
@@ -28,7 +30,7 @@ public class BattleManager {
     }
 
     public void fight1v1(Droid droid1, Droid droid2) {
-        System.out.println("Бій розпочинається між " + droid1.getName() + " і " + droid2.getName() + "!");
+        BattleLogger.start1v1(droid1, droid2);
         while (droid1.isAlive() && droid2.isAlive()) {
             perform1v1Action(droid1, droid2);
 
@@ -36,17 +38,13 @@ public class BattleManager {
                 perform1v1Action(droid2, droid1);
             }
 
-            System.out.println(droid1);
-            System.out.println(droid2);
+            BattleLogger.Round1v1Summary(droid1, droid2);
         }
-        if (droid1.isAlive()) {
-            System.out.println(droid1.getName() + " переміг!");
-        } else if (droid2.isAlive()) {
-            System.out.println(droid2.getName() + " переміг!");
-        } else {
-            System.out.println("Обидва дроїди померли в жорстокій битві");
+        if (droid1.isAlive())
+            BattleLogger.result1v1(droid1);
+        else
+            BattleLogger.result1v1(droid2);
 
-        }
     }
 
 
@@ -74,7 +72,7 @@ public class BattleManager {
     }
 
     public void fightTeamVsTeam(List<Droid> team1, List<Droid> team2) {
-        System.out.println("Бій між командами починається!");
+        BattleLogger.startTeamBattle(team1, team2);
 
         while (team1.stream().anyMatch(Droid::isAlive) && team2.stream().anyMatch(Droid::isAlive)) {
             List<Droid> attackingTeam = random.nextBoolean() ? team1 : team2;
@@ -86,19 +84,9 @@ public class BattleManager {
             team1.removeIf(droid -> !droid.isAlive());
             team2.removeIf(droid -> !droid.isAlive());
 
-            System.out.println("Стан команд:");
-            System.out.println("Команда 1:");
-            team1.forEach(System.out::println);
-            System.out.println("Команда 2:");
-            team2.forEach(System.out::println);
+            BattleLogger.teamRoundSummary(team1, team2);
         }
 
-        if (team1.stream().anyMatch(Droid::isAlive)) {
-            System.out.println("Команда 1 перемогла!");
-        } else if (team2.stream().anyMatch(Droid::isAlive)) {
-            System.out.println("Команда 2 перемогла!");
-        } else {
-            System.out.println("Обидві команди знищені.");
-        }
+        BattleLogger.teamBattleResult(team1, team2);
     }
 }

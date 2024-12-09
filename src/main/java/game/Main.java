@@ -1,3 +1,5 @@
+package game;
+
 import droids.Droid;
 import droids.Medic;
 import droids.Sniper;
@@ -26,18 +28,20 @@ public class Main {
             System.out.println("2. Показати список дроїдів");
             System.out.println("3. Бій 1 на 1");
             System.out.println("4. Бій команда на команду");
-            System.out.println("5. Вийти");
+            System.out.println("5. Прочитати бої з файла");
+            System.out.println("0. Вийти");
             System.out.print("Ваш вибір: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Очистка вводу
+            scanner.nextLine();
 
             switch (choice) {
                 case 1 -> createDroid();
                 case 2 -> showDroids();
                 case 3 -> startOneOnOneBattle();
                 case 4 -> startTeamBattle();
-                case 5 -> {
+                case 5 -> BattleLogger.readFromFile();
+                case 0 -> {
                     System.out.println("Дякуємо за гру!");
                     return;
                 }
@@ -55,7 +59,7 @@ public class Main {
         System.out.println("Формуємо команди. Командний бій потребує хоча б 4 дроїдів.");
         System.out.print("Скільки дроїдів буде в кожній команді? ");
         int teamSize = scanner.nextInt();
-        scanner.nextLine(); // Очистка вводу
+        scanner.nextLine();
 
         if (teamSize * 2 > droids.size()) {
             System.out.println("Недостатньо дроїдів для обраного розміру команд.");
@@ -72,7 +76,7 @@ public class Main {
         for (int i = 0; i < teamSize; i++) {
             System.out.print("Оберіть дроїда для команди 1 (номер): ");
             int index = scanner.nextInt() - 1;
-            scanner.nextLine(); // Очистка вводу
+            scanner.nextLine();
             if (index >= 0 && index < droids.size() && !team1.contains(droids.get(index)) && !team2.contains(droids.get(index))) {
                 team1.add(droids.get(index));
             } else {
@@ -85,7 +89,7 @@ public class Main {
         for (int i = 0; i < teamSize; i++) {
             System.out.print("Оберіть дроїда для команди 2 (номер): ");
             int index = scanner.nextInt() - 1;
-            scanner.nextLine(); // Очистка вводу
+            scanner.nextLine();
             if (index >= 0 && index < droids.size() && !team1.contains(droids.get(index)) && !team2.contains(droids.get(index))) {
                 team2.add(droids.get(index));
             } else {
@@ -105,7 +109,7 @@ public class Main {
         System.out.println("3. Медик");
         System.out.print("Ваш вибір: ");
         int type = scanner.nextInt();
-        scanner.nextLine(); // Очистка вводу
+        scanner.nextLine();
 
         System.out.print("Введіть ім'я дроїда: ");
         String name = scanner.nextLine();
