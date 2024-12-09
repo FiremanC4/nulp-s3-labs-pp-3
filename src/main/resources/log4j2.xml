@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{hh:mm:ss}: %msg%n" />
+        </Console>
+        <File name="InfoFile" fileName="logs/info.log">
+            <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+        <File name="DebugFile" fileName="logs/debug.log">
+            <PatternLayout pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="DebugFile" />
+            <AppenderRef ref="InfoFile" level="info"/>
+            <AppenderRef ref="Console" level="info"/>
+        </Root>
+    </Loggers>
+</Configuration>
